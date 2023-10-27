@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meals_app/models/meal.dart';
 import 'package:meals_app/providers/favorites_provider.dart';
+import 'package:meals_app/widgets/rating.dart';
 
 class MealDetailsScreen extends ConsumerWidget {
   const MealDetailsScreen({
@@ -48,6 +49,7 @@ class MealDetailsScreen extends ConsumerWidget {
               height: 300,
               fit: BoxFit.cover,
             ),
+            RatingDropdown(mealId: meal.id),
             const SizedBox(height: 16),
             Text(
               'Ingredients',

@@ -20,7 +20,7 @@ enum Rating {
 }
 
 class Meal {
-  const Meal({
+  Meal({
     required this.id,
     required this.categories,
     required this.title,
@@ -46,7 +46,7 @@ class Meal {
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
-  final Rating rating;
+  Rating rating;
   final bool isGlutenFree;
   final bool isLactoseFree;
   final bool isVegan;
