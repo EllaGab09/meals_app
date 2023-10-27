@@ -6,18 +6,20 @@ import 'package:transparent_image/transparent_image.dart';
 class MealItem extends StatelessWidget {
   const MealItem({
     required this.meal,
-    required this.onSelectMeal,
+    required this.onSelectMeal, // Callback function to handle meal selection
     super.key,
   });
 
   final Meal meal;
   final void Function(Meal meal) onSelectMeal;
 
+  // Get the text representation of meal complexity (e.g., Easy, Medium)
   String get complexityText {
     return meal.complexity.name[0].toUpperCase() +
         meal.complexity.name.substring(1);
   }
 
+  // Get the text representation of meal affordability (e.g., Affordable, Pricey)
   String get affordabilityText {
     return meal.affordability.name[0].toUpperCase() +
         meal.affordability.name.substring(1);
@@ -31,12 +33,15 @@ class MealItem extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       elevation: 2,
       child: InkWell(
-        onTap: () => onSelectMeal(meal),
+        onTap: () =>
+            onSelectMeal(meal), // Trigger the meal selection callback on tap
         child: Stack(
           children: [
             FadeInImage(
-              placeholder: MemoryImage(kTransparentImage),
-              image: NetworkImage(meal.imageUrl),
+              placeholder: MemoryImage(
+                  kTransparentImage), // Placeholder for the image (transparent)
+              image:
+                  NetworkImage(meal.imageUrl), // Load the meal image from a URL
               fit: BoxFit.cover,
               height: 200,
               width: double.infinity,

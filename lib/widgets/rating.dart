@@ -15,13 +15,16 @@ class RatingDropdown extends ConsumerStatefulWidget {
 class _MyDropdownState extends ConsumerState<RatingDropdown> {
   Rating _selectedRating = Rating.none;
   void changeRating() {
-    ref.read(mealsProvider.notifier).renameMeal(widget.mealId, _selectedRating);
+    // Use the 'ref' to read the mealsProvider and update the meal's rating
+    ref.read(mealsProvider.notifier).rateMeal(widget.mealId, _selectedRating);
   }
 
   @override
   Widget build(BuildContext context) {
-    ref.watch(mealsProvider);
-    final meal = ref.read(mealsProvider.notifier).getMeal(widget.mealId);
+    ref.watch(mealsProvider); // Watch for changes in mealsProvider
+    final meal = ref
+        .read(mealsProvider.notifier)
+        .getMeal(widget.mealId); // Watch for changes in mealsProvider
 
     return Container(
       child: Row(
@@ -35,7 +38,7 @@ class _MyDropdownState extends ConsumerState<RatingDropdown> {
           DropdownButton<Rating>(
             value: meal.rating, // none by default
             style: const TextStyle(fontSize: 18, color: Colors.white),
-            items: Rating.values
+            items: Rating.values // Create dropdown items for different ratings
                 .map(
                   (category) => DropdownMenuItem(
                     value: category,
@@ -46,8 +49,9 @@ class _MyDropdownState extends ConsumerState<RatingDropdown> {
                 )
                 .toList(),
             onChanged: (value) {
-              _selectedRating = value!;
-              changeRating();
+              _selectedRating =
+                  value!; // Update the selected rating on the current screen
+              changeRating(); // Call the changeRating() method to update the meal's rating
 
               setState(() {
                 _selectedRating = value;

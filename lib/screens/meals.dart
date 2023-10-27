@@ -13,6 +13,7 @@ class MealsScreen extends StatelessWidget {
   final String? title;
   final List<Meal> meals;
 
+  // Method to navigate to the meal details screen
   void selectMeal(Meal meal, BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -25,6 +26,7 @@ class MealsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget content;
 
+    // Check if there are no meals to display and show a backup screen
     if (meals.isEmpty) {
       content = Center(
           child: Column(
@@ -42,6 +44,7 @@ class MealsScreen extends StatelessWidget {
         ],
       ));
     } else {
+      // Display a list of meals using the MealItem widget
       content = ListView.builder(
         itemBuilder: (ctx, index) {
           return MealItem(
@@ -56,14 +59,14 @@ class MealsScreen extends StatelessWidget {
     }
 
     if (title == null) {
-      return content;
+      return content; // show just the content if there is no title
     }
 
     return Scaffold(
       appBar: AppBar(
         title: Text(title!),
       ),
-      body: content,
+      body: content, // Display the content within a Scaffold with an app bar
     );
   }
 }

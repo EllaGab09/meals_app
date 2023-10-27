@@ -11,7 +11,7 @@ class CategoriesScreen extends StatefulWidget {
     required this.availableMeals,
     super.key,
   });
-  final List<Meal> availableMeals;
+  final List<Meal> availableMeals; // Store the available meals
 
   @override
   State<CategoriesScreen> createState() => _CategoriesScreenState();
@@ -19,7 +19,8 @@ class CategoriesScreen extends StatefulWidget {
 
 class _CategoriesScreenState extends State<CategoriesScreen>
     with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
+  late AnimationController
+      _animationController; // Animation controller for the screen transition
   @override
   void initState() {
     super.initState();
@@ -30,20 +31,24 @@ class _CategoriesScreenState extends State<CategoriesScreen>
       upperBound: 1,
     );
 
-    _animationController.forward();
+    _animationController.forward(); // Start the animation
   }
 
   @override
   void dispose() {
-    _animationController.dispose();
+    _animationController.dispose(); // Dispose of the animation controller
     super.dispose();
   }
 
+  // Method to select a category and navigate to the MealsScreen
   void _selectCategory(BuildContext context, Category category) {
+    // Filter the available meals based on the selected category
+
     final filteredMeals = widget.availableMeals
         .where((meal) => meal.categories.contains(category.id))
         .toList();
 
+    // Navigate to the MealsScreen with the filtered meals
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (ctx) => MealsScreen(
@@ -79,8 +84,10 @@ class _CategoriesScreenState extends State<CategoriesScreen>
           children: [
             for (final category in availableCategories)
               CategoryGridItem(
-                  onSelectCategory: () => _selectCategory(context, category),
-                  category: category),
+                  onSelectCategory: () => _selectCategory(
+                      context, category), // Callback for category selection
+                  category:
+                      category), // Display each category using CategoryGridItem
           ],
         ),
       ),
