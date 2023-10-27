@@ -10,6 +10,15 @@ enum Affordability {
   luxurious,
 }
 
+enum Rating {
+  none,
+  bad,
+  mediocre,
+  good,
+  excelent,
+  best,
+}
+
 class Meal {
   const Meal({
     required this.id,
@@ -20,6 +29,7 @@ class Meal {
     required this.steps,
     required this.duration,
     required this.complexity,
+    required this.rating,
     required this.affordability,
     required this.isGlutenFree,
     required this.isLactoseFree,
@@ -36,6 +46,7 @@ class Meal {
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
+  final Rating rating;
   final bool isGlutenFree;
   final bool isLactoseFree;
   final bool isVegan;
